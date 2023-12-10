@@ -29,6 +29,71 @@
 - Kendi Dosyanızı Oluşturmak adına  SifrelemeProgram.exe' nin Olduğu Klasörde kendiniz için bir  Dosya Oluşturabilirsiniz.
 - Kendi Oluşturduğunuz başka adlı  Bir Dosyayı Okutmak İsterseniz Kod İçindeki **'input.txt'**  içeriğini  Değiştirebilirsiniz.
 
+### Ekran Görüntüleri
+![Şifreleme Görüntüsü](https://github.com/1230505065/Sifreleme-odevi/blob/main/sifreleme%20ss.png)
+
+
+![Deşifreleme Görüntüsü](https://github.com/1230505065/Sifreleme-odevi/blob/main/ss%20desifreleme%20do%C4%9Frusu.png)
+
+### Kod İçeriği
+#include <stdio.h>
+#include <ctype.h>
+
+// Fonksiyonların prototipleri
+void encrypt(char password[], int scroll);
+void deEncrypt(char password[], int scrollToBack);
+
+int main() {
+    char input[1000];
+    int choice, scroll;
+
+    // Doğru bir seçenek girilene kadar döngü
+    while (1) {
+        printf("Şifreleme (1) veya Deşifreleme (2) yapmak için bir seçenek girin: ");
+        if (scanf("%d", &choice) == 1 && (choice == 1 || choice == 2)) {
+            break;
+        } else {
+            printf("Geçersiz seçenek. Lütfen 1 veya 2 girin.\n");
+            fflush(stdin);
+        }
+    }
+
+    printf("Metni girin: ");
+    scanf(" %[^\n]", input);  // Metni boşluklarla birlikte okumak için boşluk bırakıldı.
+
+    printf("Kaydırma miktarını girin: ");
+    scanf("%d", &scroll);
+
+    if (choice == 1) {
+        encrypt(input, scroll);
+        printf("Şifrelenmiş Metin: %s\n", input);
+    } else if (choice == 2) {
+        deEncrypt(input, scroll);
+        printf("Deşifre Edilmiş Metin: %s\n", input);
+    }
+
+    return 0;
+}
+
+// Şifreleme fonksiyonu
+void encrypt(char password[], int scroll) {
+    int i = 0;
+    while (password[i] != '\0') {
+        if (isalpha(password[i])) {
+            char base = islower(password[i]) ? 'a' : 'A';
+            password[i] = base + (password[i] - base + scroll) % 26;
+        }
+        ++i;
+    }
+}
+
+// Deşifreleme fonksiyonu
+void deEncrypt(char password[], int scrollToBack) {
+    encrypt(password, -scrollToBack);
+}
+
+
+
 
 
     
