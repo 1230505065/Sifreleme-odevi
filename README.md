@@ -1,4 +1,4 @@
-# programlama dersi ödevi 
+# 
 
 ## Program Hakkında Bilgiler
 - Şifreleme Programı  sizin Verdiğiniz tam Sayı Kadar Girdiğiniz Metni İleri veyahut da  Gerye Doğru Öteleyebilir 
